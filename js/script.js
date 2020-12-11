@@ -3,6 +3,8 @@ let FULL_TICKER_COUNT;
 let SCROLL_DURATION = 0;
 let HERSHKOVITZ_IMG_HEIGHT = 0;
 let ANIMATION_LOOPS = 0;
+let NOMICS_ONLINE = true;
+let FINNHUB_ONLINE = true;
 
 const FORMATTER = new Intl.NumberFormat('en-US', {
    minimumFractionDigits: 2,
@@ -34,15 +36,23 @@ var startBtnClick = async function() {
 }
 
 var theMeat = async function() {
+  // reset to true at beginning of loop
+  NOMICS_ONLINE = true;
+  FINNHUB_ONLINE = true;
+
   insertFillerBlurb("Beginning");
   insertFillerBlurb("Beginning2");
   insertFillerBlurb("Beginning3");
   for (var i = 0; i < FULL_TICKER_COUNT; i++) {
     if (FULL_TICKER_LIST[i].type === "crypto") {
-      retrieveCryptoData(FULL_TICKER_LIST[i].tickerSymbol);
+      if (NOMICS_ONLINE) {
+        retrieveCryptoData(FULL_TICKER_LIST[i].tickerSymbol);
+      }
     }
     else {
-      retrieveStockData(FULL_TICKER_LIST[i].tickerSymbol);
+      if (FINNHUB_ONLINE) {
+        retrieveStockData(FULL_TICKER_LIST[i].tickerSymbol);
+      }
     }
   }
   insertFillerBlurb("Ending");
@@ -62,16 +72,22 @@ var retrieveStockData = function(tickerSymbol) {
     },
     dataType: 'json',
     success: function(response) {
-      var currentPriceString = response.c;
-      var previousClosePriceString = response.pc;
-      var currentPrice = parseFloat(currentPriceString);
-      var previousClosePrice = parseFloat(previousClosePriceString);
-      var percentChangeString = calculatePercentChange(currentPrice, previousClosePrice);
-      var percentChange = FORMATTER.format(parseFloat(percentChangeString.replace('%', ''))) + '%';
-      var positiveChange = percentChangeString.indexOf('-') >= 0 ? false : true;
-      percentChange = (positiveChange) ? "+".concat(percentChange) : percentChange;
+      if (response == null) {
+        FINNHUB_ONLINE = false;
+        displayOfflineMsg("finnhub_offline");
+      }
+      else {
+        var currentPriceString = response.c;
+        var previousClosePriceString = response.pc;
+        var currentPrice = parseFloat(currentPriceString);
+        var previousClosePrice = parseFloat(previousClosePriceString);
+        var percentChangeString = calculatePercentChange(currentPrice, previousClosePrice);
+        var percentChange = FORMATTER.format(parseFloat(percentChangeString.replace('%', ''))) + '%';
+        var positiveChange = percentChangeString.indexOf('-') >= 0 ? false : true;
+        percentChange = (positiveChange) ? "+".concat(percentChange) : percentChange;
 
-      appendDataToDom(tickerSymbol, FORMATTER.format(currentPrice), percentChange, positiveChange);
+        appendDataToDom(tickerSymbol, FORMATTER.format(currentPrice), percentChange, positiveChange);
+      }
     }
   });
 }
@@ -90,14 +106,20 @@ var retrieveCryptoData = function(cryptoSymbol) {
     },
     dataType: 'json',
     success: function(response) {
-      var currentPriceString = response[0].price;
-      var currentPrice = FORMATTER.format(parseFloat(currentPriceString));
-      var percentChangeString = response[0]["1d"].price_change_pct;
-      var percentChange = FORMATTER.format(parseFloat(percentChangeString.replace('%', '')) * 100) + '%';
-      var positiveChange = percentChangeString.indexOf('-') >= 0 ? false : true;
-      percentChange = (positiveChange) ? "+".concat(percentChange) : percentChange;
+      if (response == null) {
+        NOMICS_ONLINE = false;
+        displayOfflineMsg("nomics_offline");
+      }
+      else {
+        var currentPriceString = response[0].price;
+        var currentPrice = FORMATTER.format(parseFloat(currentPriceString));
+        var percentChangeString = response[0]["1d"].price_change_pct;
+        var percentChange = FORMATTER.format(parseFloat(percentChangeString.replace('%', '')) * 100) + '%';
+        var positiveChange = percentChangeString.indexOf('-') >= 0 ? false : true;
+        percentChange = (positiveChange) ? "+".concat(percentChange) : percentChange;
 
-      appendDataToDom(cryptoSymbol, currentPrice, percentChange, positiveChange);
+        appendDataToDom(cryptoSymbol, currentPrice, percentChange, positiveChange);
+      }
     }
   });
 }
@@ -125,7 +147,17 @@ var insertFillerBlurb = function(identifier) {
   var idName = "fillerBlurb" + identifier + "Container";
   anchorDiv.append('<div id="' + idName + '" class="stockContainer">');
   var elementContainer = $("#" + idName);
-  var pictureUrlLocation = "Other\\filler";
+  var pictureUrlLocation = "other\\filler";
+  elementContainer.append('<img src="logos\\' + pictureUrlLocation + '.png">');
+  elementContainer.append('<p style="color:black !important;">' + "?" + '&nbsp;</p>');
+}
+
+var displayOfflineMsg = function(imgName) {
+  var anchorDiv = $('#anchorDiv');
+  var idName = imgName + "Container";
+  anchorDiv.append('<div id="' + idName + '" class="stockContainer">');
+  var elementContainer = $("#" + idName);
+  var pictureUrlLocation = "other\\" + imgName;
   elementContainer.append('<img src="logos\\' + pictureUrlLocation + '.png">');
   elementContainer.append('<p style="color:black !important;">' + "?" + '&nbsp;</p>');
 }
