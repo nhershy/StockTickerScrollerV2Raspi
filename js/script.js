@@ -36,6 +36,7 @@ var startBtnClick = async function() {
 var theMeat = async function() {
   insertFillerBlurb("Beginning");
   insertFillerBlurb("Beginning2");
+  insertFillerBlurb("Beginning3");
   for (var i = 0; i < FULL_TICKER_COUNT; i++) {
     if (FULL_TICKER_LIST[i].type === "crypto") {
       retrieveCryptoData(FULL_TICKER_LIST[i].tickerSymbol);
