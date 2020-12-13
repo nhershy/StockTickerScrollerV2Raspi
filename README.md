@@ -40,10 +40,25 @@ var stockSymbols = "AAPL,ACB,AMZN,AXP,DNKN,FB,GOOG,MSFT,NFLX,SPCE,TSLA";
 5. Adjust the `SCROLL_SPEED` to your liking. The smaller the number, the faster it will scroll. 
 
 ```
-const SCROLL_SPEED = 13000;
+const SCROLL_SPEED = 10000;
 ```
 
-5. Double click the `index.html` file to run the program. 
+5. Install Apache webserver
+Open a Linux terminal and type these commands one by one:
+
+```
+sudo apt update
+sudo apt install apache2
+```
+
+6. Copy all files downloaded from this repository and place them in the **/var/www/html** folder.
+*Note: make sure you place the files directly in the above folder, and do not place the parent folder within that folder.*
+
+```
+sudo cp -ar [LOCATION/OF/YOUR/FILES/*] /var/www/html
+```
+
+7. Run the program by opening up a browser and typing **localhost** in the searchbar and click enter.
 
 ## Author
 
