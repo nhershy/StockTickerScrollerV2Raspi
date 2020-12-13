@@ -258,8 +258,7 @@ var growImage = async function() {
   }
   else {
     ANIMATION_LOOPS = 0;
-    $('#hershkovitzLogo').fadeOut(1500);
-    //$('#hershkovitzLogo').css('display','none');
+    $('#hershkovitzLogo').css('display','none');
     await theMeat();
   }
 }
@@ -273,8 +272,7 @@ var shrinkImage = async function() {
   }
   else {
     ANIMATION_LOOPS = 0;
-    $('#hershkovitzLogo').fadeOut(1500);
-    //$('#hershkovitzLogo').css('display','none');
+    $('#hershkovitzLogo').css('display','none');
     await theMeat();
   }
 }
