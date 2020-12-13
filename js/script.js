@@ -43,6 +43,7 @@ var theMeat = async function() {
   insertFillerBlurb("Beginning");
   insertFillerBlurb("Beginning2");
   insertFillerBlurb("Beginning3");
+  insertFillerBlurb("Beginning4");
   for (var i = 0; i < FULL_TICKER_COUNT; i++) {
     if (FULL_TICKER_LIST[i].type === "crypto") {
       if (NOMICS_ONLINE) {
@@ -93,9 +94,8 @@ var retrieveStockData = function(tickerSymbol) {
 }
 
 var retrieveCryptoData = function(cryptoSymbol) {
-  const proxyurl = "https://cors-anywhere.herokuapp.com/";
   $.ajax({
-    url: proxyurl + 'https://api.nomics.com/v1/currencies/ticker',
+    url: 'https://api.nomics.com/v1/currencies/ticker',
     type: 'GET',
     async : false,
     data: {
@@ -258,7 +258,8 @@ var growImage = async function() {
   }
   else {
     ANIMATION_LOOPS = 0;
-    $('#hershkovitzLogo').css('display','none');
+    $('#hershkovitzLogo').fadeOut(1500);
+    //$('#hershkovitzLogo').css('display','none');
     await theMeat();
   }
 }
@@ -272,7 +273,8 @@ var shrinkImage = async function() {
   }
   else {
     ANIMATION_LOOPS = 0;
-    $('#hershkovitzLogo').css('display','none');
+    $('#hershkovitzLogo').fadeOut(1500);
+    //$('#hershkovitzLogo').css('display','none');
     await theMeat();
   }
 }
