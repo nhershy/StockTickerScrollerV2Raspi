@@ -66,4 +66,4 @@ sudo cp -ar [LOCATION/OF/YOUR/FILES/*] /var/www/html
 
 ## License
 
-This project is licensed under the MIT License - see the `LICENSE.txt` file for details
+This project is licensed under the MIT License - see the `LICENSE` file for details
