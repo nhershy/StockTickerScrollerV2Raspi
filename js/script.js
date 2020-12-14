@@ -252,14 +252,14 @@ var growAndShrinkImageAnimation = async function() {
 
 var growImage = async function() {
   if (ANIMATION_LOOPS < 6) {
-    $('#hershkovitzLogo').animate({height: (HERSHKOVITZ_IMG_HEIGHT + 100), 'marginTop': '-=50px'}, 800, async function () {
+    $('#hershkovitzLogo').animate({height: (HERSHKOVITZ_IMG_HEIGHT + 160), 'marginTop': '-=50px'}, 800, async function () {
         ANIMATION_LOOPS += 1;
         await shrinkImage();
     });
   }
   else {
     ANIMATION_LOOPS = 0;
-    $('#hershkovitzLogo').animate({opacity: 0}, 1000, async function () {
+    $('#hershkovitzLogo').animate({opacity: 0}, 1200, async function () {
       $('#hershkovitzLogo').css('display','none');
       await theMeat();
     });
@@ -268,14 +268,14 @@ var growImage = async function() {
 
 var shrinkImage = async function() {
   if (ANIMATION_LOOPS < 6) {
-    $('#hershkovitzLogo').animate({height: HERSHKOVITZ_IMG_HEIGHT, 'marginTop': '0px'}, 800, async function () {
+    $('#hershkovitzLogo').animate({height: (HERSHKOVITZ_IMG_HEIGHT + 25), 'marginTop': '40px'}, 800, async function () {
         ANIMATION_LOOPS += 1;
         await growImage();
     });
   }
   else {
     ANIMATION_LOOPS = 0;
-    $('#hershkovitzLogo').animate({opacity: 0}, 1000, async function () {
+    $('#hershkovitzLogo').animate({opacity: 0}, 1200, async function () {
       $('#hershkovitzLogo').css('display','none');
       await theMeat();
     });
