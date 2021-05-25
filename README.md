@@ -1,8 +1,8 @@
 # Stock Ticker Scroller V2
 
-A modern version of the classic LED stock market ticker display, with nicely displayed logos. Optionally supports cryptocurrencies. Runs from your browser of choice. Made especially for the sophisticated schemer. 
+A modern version of the classic LED stock market ticker display, with nicely displayed logos. Optionally supports cryptocurrencies. Runs from your browser of choice. Made especially for the sophisticated schemer. "Beyond the point of averageness"
 
-"Beyond the point of averageness"
+Click the image below to watch the demo
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/ezBPnoTSzWU/0.jpg)](https://www.youtube.com/watch?v=ezBPnoTSzWU)
 
