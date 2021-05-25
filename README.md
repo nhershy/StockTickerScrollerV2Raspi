@@ -4,6 +4,8 @@ A modern version of the classic LED stock market ticker display, with nicely dis
 
 "Beyond the point of averageness"
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/ezBPnoTSzWU/0.jpg)](https://www.youtube.com/watch?v=ezBPnoTSzWU)
+
 ## Getting Started
 
 This program relies on the [Finnhub](https://finnhub.io/) API to fetch current stock prices, and the [Nomics](https://nomics.com/) API to fetch current crypto prices. You will need to claim you free personal API for both of them key to have access to the data. Then, you must add your newly claimed keys to the `config.js` file. Within that same file you can modify which stocks and cryptos you would like to be displayed, as well as the scroll speed.
