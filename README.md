@@ -10,7 +10,7 @@ Click the image below to watch the demo
 
 This program relies on the [Finnhub](https://finnhub.io/) API to fetch current stock prices, and the [Nomics](https://nomics.com/) API to fetch current crypto prices. You will need to claim you free personal API for both of them key to have access to the data. Then, you must add your newly claimed keys to the `config.js` file. Within that same file you can modify which stocks and cryptos you would like to be displayed, as well as the scroll speed.
 
-### Detailed How-To
+### Technical Setup
 
 1. Apply for your API key from Finnhub
 
@@ -61,6 +61,20 @@ sudo cp -ar [LOCATION/OF/YOUR/FILES/*] /var/www/html
 ```
 
 7. Run the program by opening up a browser and typing **localhost** in the searchbar and click enter.
+
+### CORS
+
+If CORS errors are show when running the program, the `apache.conf` needs to be modified accordingly:
+
+* Navigate to `/etc/apache2` director
+* Edit the `apache2.conf` file: `sudo nano apache2.conf`
+* Add the following code to the end of the file:
+```
+Header set Access-Control-Allow-Origin '*'
+Header set Access-Control-Allow-Origin 'http://localhost'
+```
+* Save the file: Ctrl+X and then click 'Y'
+* Do hard reload on the browser. E.g. In Chrome, right click the "page refresh" button and select "Empty Cache and Hard Reload"
 
 ## Author
 
