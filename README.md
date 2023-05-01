@@ -66,7 +66,7 @@ sudo cp -ar [LOCATION/OF/YOUR/FILES/*] /var/www/html
 
 If CORS errors are show when running the program, the `apache.conf` needs to be modified accordingly:
 
-* Navigate to `/etc/apache2` director
+* Navigate to `/etc/apache2` directory
 * Edit the `apache2.conf` file: `sudo nano apache2.conf`
 * Add the following code to the end of the file:
 ```
